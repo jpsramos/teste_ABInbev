@@ -221,36 +221,58 @@ Arquivo Python para orquestrar o fluxo de trabalho no Airflow.
 
 
 import sys
+
+
 import os
+
 import airflow
+
 from airflow import DAG
+
 from airflow.operators.python import PythonOperator
+
 from airflow.providers.apache.spark.operators.spark_submit import SparkSubmitOperator
 
 # Adicione o diretório base do projeto ao sys.path
+
 base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+
 sys.path.append(base_path)
 
 # Agora você pode importar a classe corretamente
+
 from jobs.utils.api.restfull import DataProcessor as restfull
 
 # Função Python que será executada no novo step
+
 def run_restfull_api():
+
     print("Running custom Python script...")
+
     # Instancia a classe DataProcessor
+    
     processor = restfull()
+    
     # Chama o método `run` da classe para executar o processo
+    
     output = processor.run(subdirectory="Breweries")
+    
     print("Custom Python script executed successfully.")
+    
     return output['layer']
 
 # Configuração da DAG
 dag = DAG(
+  
     dag_id="teste",
+    
     default_args={
+    
         "owner": "Jonnathans Silva",
+        
         "start_date": airflow.utils.dates.days_ago(1),
     },
+
     schedule_interval="@daily",
 )
 
