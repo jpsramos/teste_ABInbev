@@ -96,8 +96,9 @@ EXPOSE 8080
 CMD ["python", "jobs/scripts/ingestion.py"]
 
 
+---
 
---
+## **1. Dockerfile**
 
 ### Conteúdo do `docker-compose.yml`
 ```doceker-compose.yml
