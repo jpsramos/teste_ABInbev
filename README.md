@@ -95,6 +95,8 @@ EXPOSE 8080
 # Etapa 9: Comando de inicialização
 CMD ["python", "jobs/scripts/ingestion.py"]
 
+
+
 --
 
 ### Conteúdo do `docker-compose.yml`
