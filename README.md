@@ -38,8 +38,6 @@ Projeto ABInbev
 ├── utils
 │   ├── api/
 │   │   └── restfull.py/
-├── config/
-│   ├── config.py
 ├── docker-compose.yml
 ├── Dockerfile
 └── README.md└── README.md
@@ -100,6 +98,7 @@ CMD ["python", "jobs/scripts/ingestion.py"]
 --
 
 ### Conteúdo do `docker-compose.yml`
+```doceker-compose.yml
 
 ```yaml
 version: '4'
