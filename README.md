@@ -51,6 +51,7 @@ FROM python:3.8-slim
 
 # Etapa 2: Configuração do ambiente
 ENV PYTHONDONTWRITEBYTECODE=1
+
 ENV PYTHONUNBUFFERED=1
 
 # Etapa 3: Instalação de dependências do sistema
