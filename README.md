@@ -110,6 +110,7 @@ version: "3.8"
 services:
 
   spark-master:
+
   
     image: bde2020/spark-master:3.5.0-hadoop3.2
     
@@ -132,6 +133,7 @@ services:
 
 
   spark-worker:
+
   
     image: bde2020/spark-worker:3.5.0-hadoop3.2
     
