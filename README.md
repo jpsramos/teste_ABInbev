@@ -56,34 +56,49 @@ ENV PYTHONUNBUFFERED=1
 
 # Etapa 3: Instalação de dependências do sistema
 RUN apt-get update && apt-get install -y \
+
     build-essential \
+
     default-jdk \
+    
     curl \
+    
     && rm -rf /var/lib/apt/lists/*
 
 # Etapa 4: Instalação do Spark
 ENV SPARK_VERSION=3.5.0
+
 RUN curl -O https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.tgz && \
+
     tar -xzf spark-${SPARK_VERSION}-bin-hadoop3.tgz -C /opt && \
+    
     rm spark-${SPARK_VERSION}-bin-hadoop3.tgz
+
 ENV SPARK_HOME=/opt/spark-${SPARK_VERSION}-bin-hadoop3
+
 ENV PATH=$SPARK_HOME/bin:$PATH
 
 # Etapa 5: Configuração do diretório de trabalho
+
 WORKDIR /app
 
 # Etapa 6: Copiar os arquivos do projeto para o container
+
 COPY . /app
 
 # Etapa 7: Instalação de dependências do Python
+
 RUN pip install --no-cache-dir --upgrade pip && \
+
     pip install --no-cache-dir -r requirements.txt
 
 # Etapa 8: Exposição de portas (se necessário)
 EXPOSE 8080
 
 # Etapa 9: Comando de inicialização
+
 CMD ["python", "jobs/scripts/ingestion.py"]
+
 2. docker-compose.yml
 Arquivo para orquestrar múltiplos containers.
 
@@ -91,66 +106,115 @@ Arquivo para orquestrar múltiplos containers.
 
 
 version: "3.8"
+
 services:
+
   spark-master:
+  
     image: bde2020/spark-master:3.5.0-hadoop3.2
+    
     container_name: spark-master
+    
     ports:
+    
       - "7077:7077"
+      
       - "8080:8080"
+    
     environment:
+    
       - INIT_DAEMON_STEP=setup_spark
+
     networks:
+
       - spark-network
+
+
 
   spark-worker:
+  
     image: bde2020/spark-worker:3.5.0-hadoop3.2
+    
     container_name: spark-worker
+    
     environment:
+    
       - SPARK_MASTER=spark://spark-master:7077
+    
     depends_on:
+   
       - spark-master
+    
     networks:
+    
       - spark-network
+
+
 
   data-processor:
+  
     build:
+    
       context: .
+      
       dockerfile: Dockerfile
+    
     container_name: data-processor
+    
     environment:
+    
       - SPARK_MASTER=spark://spark-master:7077
     depends_on:
+    
       - spark-master
+    
     networks:
+    
       - spark-network
 
+
 networks:
+
   spark-network:
+  
     driver: bridge
+
 3. .dockerignore
+
 Arquivo para excluir arquivos desnecessários da imagem Docker.
 
 
 
 
 # Ignorar arquivos e diretórios desnecessários
+
 .venv
+
 __pycache__
+
 *.pyc
+
 *.pyo
+
 *.log
+
 data/
+
 4. requirements.txt
+
 Arquivo com as dependências do projeto.
 
 
 
 
 pyspark==3.5.0
+
 pandas==1.5.3
+
 pyarrow==12.0.1
+
 5. DAG do Airflow
+
 Arquivo Python para orquestrar o fluxo de trabalho no Airflow.
 
 
