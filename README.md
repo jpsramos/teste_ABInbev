@@ -7,6 +7,7 @@ Este projeto realiza o processamento de dados utilizando PySpark e Pandas. Ele √
 
 ## Requisitos
 Certifique-se de que os seguintes requisitos est√£o instalados antes de executar o projeto:
+
 - Python 3.8 ou superior
 - PySpark 3.5.0
 - Pandas 1.5.3
