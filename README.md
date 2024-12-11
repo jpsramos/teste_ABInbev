@@ -196,7 +196,7 @@ networks:
 ```
 docker-compose up -d --build
 ```
-Este comando criará suma imagem e docker, utilizará o docker-compose.yml como template para baixar suma imagem pyspark e o Dockerfile para instalr todos os recursos necesários. Os pacotes inserido no Dockerfile garante que não haverá falha na compatibilidade das aplicaçãoes, fique atento em propor a utilização de algum quanto suas dependências.
+Este comando criará sua imagem e docker, utilizará o docker-compose.yml como template para baixar sua imagem pyspark e o Dockerfile para instalr todos os recursos necesários. Os pacotes inserido no Dockerfile garante que não haverá falha na compatibilidade das aplicaçãoes, fique atento em propor a utilização de algum quanto suas dependências.
 
 - **3**: Após finalização ao executar o comando docker-compose -d , poderá confirmar seus containers ativos, será listado os seguintes:
 ```
