@@ -245,7 +245,7 @@ Directory,File Name,File Path,Start Time,End Time,Record Count
 ```
 
 ### Tratamentos
-Ttrasformação para Silver seguiu boas práticas de nomenclatura de campos, para familiaridade de quem conhece os campos a origem. A evolução desse retona todos, brewary na frente de seus nomes.
+Ttrasformação para Silver seguiu boas práticas de nomenclatura de campos, para familiaridade de quem os conhece por sua origem. A evolução desse retona todos com brewary na frente de seus nomes.
 
 ```
 column_mapping = {
