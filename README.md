@@ -334,3 +334,59 @@ task = PythonOperator(
 
 ![image](https://github.com/user-attachments/assets/7cff4bea-ccf3-4b4b-94ca-16c95d0cc63e)
 
+
+
+### Evidências das tratativas realizadas
+
+- **Listar imagens**
+
+```
+docker images
+```
+
+- **Ver todos containers**
+```
+docker ps -a
+```
+
+- **Acessar container**
+
+```
+docker exec -it <nome container> bash
+```
+
+- **Parar um container**
+
+```
+docker stop <nome_ou_id_do_container>
+```
+
+- **Reiniciar um container**
+
+```
+docker restart <nome_ou_id_do_container>
+```
+
+- **Remover um container**
+
+```
+docker rm <nome_ou_id_do_container>
+```
+
+- **Desligar containers de um projeto**
+
+```
+docker-compose down
+```
+
+- **Fazer o build de uma imagem**
+
+```
+docker-compose up -d --buid
+```
+
+- **Visualizar status dos containers**
+
+```
+docker-compose up -d
+```
