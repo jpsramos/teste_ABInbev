@@ -243,6 +243,10 @@ Directory,File Name,File Path,Start Time,End Time,Record Count
 /opt/airflow/data/transient/Breweries/2024-12-11,20241211_0006.csv,/opt/airflow/data/transient/Breweries/2024-12-11/20241211_0006.csv,2024-12-11 00:06:21,2024-12-11 00:11:52,8355
 
 ```
+
+Abaixo algumas sugestões para evolução de uma pipeline utilizando airflow.
+
+
 - **Retentativas automáticas (Retries)**
 ```
 task = PythonOperator(
@@ -306,30 +310,3 @@ task = PythonOperator(
 )
 
 ```
-
-### Tratamentos
-Ttrasformação para Silver seguiu boas práticas de nomenclatura de campos, para familiaridade de quem os conhece por sua origem. A evolução desse retona todos com brewary na frente de seus nomes.
-
-```
-column_mapping = {
-    "id": "brewery_id",
-    "name": "brewery_name",
-    "brewery_type": "type",
-    "address_1": "primary_address",
-    "address_2": "secondary_address",
-    "address_3": "tertiary_address",
-    "city": "city",
-    "state_province": "state",
-    "postal_code": "zip_code",
-    "country": "country",
-    "longitude": "longitude",
-    "latitude": "latitude",
-    "phone": "phone_number",
-    "website_url": "website",
-    "state": "state_code",
-    "street": "street_name"
-}
-```
-
-### Tecnologias Utilizadas
-
