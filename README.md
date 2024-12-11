@@ -243,6 +243,69 @@ Directory,File Name,File Path,Start Time,End Time,Record Count
 /opt/airflow/data/transient/Breweries/2024-12-11,20241211_0006.csv,/opt/airflow/data/transient/Breweries/2024-12-11/20241211_0006.csv,2024-12-11 00:06:21,2024-12-11 00:11:52,8355
 
 ```
+- **Retentativas automáticas (Retries)**
+```
+task = PythonOperator(
+    task_id='my_task',
+    python_callable=my_function,
+    retries=3,  # Número de tentativas
+    retry_delay=timedelta(minutes=5),  # Intervalo entre tentativas
+)
+
+```
+- **Alertas de falhas**
+```
+task = PythonOperator(
+    task_id='my_task',
+    python_callable=my_function,
+    email_on_failure=True,  # Envia e-mail em caso de falha
+    email='your_email@example.com',
+)
+
+```
+
+- **Qualidade/Testes de Dados**
+```
+def validate_data():
+    # Validação de dados
+    assert len(df) > 0, "Dados não encontrados"
+    assert df['column'].notnull().all(), "Existem valores nulos"
+
+```
+
+- **Notificações em Falhas**
+```
+task = PythonOperator(
+    task_id='my_task',
+    python_callable=my_function,
+    on_failure_callback=send_failure_alert,  # Função de callback para falhas
+)
+
+```
+
+- **Função de Callback**:
+```
+from airflow.utils.email import send_email
+
+def send_failure_alert(context):
+    task_instance = context.get('task_instance')
+    send_email(
+        to='your_email@example.com',
+        subject=f"Task {task_instance.task_id} failed",
+        html_content=f"Task {task_instance.task_id} failed at {task_instance.execution_date}",
+    )
+
+```
+
+- **Agendamento e Tiemout**:
+```
+task = PythonOperator(
+    task_id='my_task',
+    python_callable=my_function,
+    execution_timeout=timedelta(minutes=30),  # Timeout para execução
+)
+
+```
 
 ### Tratamentos
 Ttrasformação para Silver seguiu boas práticas de nomenclatura de campos, para familiaridade de quem os conhece por sua origem. A evolução desse retona todos com brewary na frente de seus nomes.
@@ -267,4 +330,6 @@ column_mapping = {
     "street": "street_name"
 }
 ```
+
+### Tecnologias Utilizadas
 
