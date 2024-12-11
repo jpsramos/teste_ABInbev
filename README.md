@@ -218,10 +218,16 @@ Connection Type *: spark
 Host: spark://spark-master
 Port: 7077
 ```
+![image](https://github.com/user-attachments/assets/ec689a44-de36-4b0c-8aad-d4079ad447a4)
+
+<img width="944" alt="image" src="https://github.com/user-attachments/assets/b506f3bf-1c2c-42de-85f5-4692cf5eb6d3">
+
 - **6**: Dag disponível
+
 ![image](https://github.com/user-attachments/assets/cf9cfa33-1052-403b-b483-39b35ee0946e)
 
 - **7**: Processo iniciado
+
 ![image](https://github.com/user-attachments/assets/bb2efec6-6bd7-4919-9671-3a01daad758a)
 
 
