@@ -26,7 +26,7 @@ Este repositório contém soluções para testes de avaliação, que envolvem co
 - **Prata (Curated Data)**: Dados transformados e particionados por localização.
 - **Ouro (Analytical Data)**: Dados agregados (quantidade de cervejarias por tipo e localização).
 
-> Obs.: foi a feita a adição de de um diretorio anteedente Transient, para recepcionar o arquivo deu um forma como json ou csv. Bronze os converte para colunar com todos campos string. A idéia é simular um recepção de formato aleatório via integração qualquer
+> Obs.: foi a feita a adição de de um diretorio anteedente Transient, para recepcionar o arquivo como json ou csv. Bronze os converte para colunar com todos campos string. A idéia é simular um recepção de formato aleatório via integração qualquer
 
 
 ### Passos para Rodar o Projeto
@@ -35,7 +35,7 @@ Este repositório contém soluções para testes de avaliação, que envolvem co
 
 ou
 
-- Crie um do zero na sua interface ide, na raiz crie seu ambiente virtual siga a estrutura abaixo
+- Crie um do zero na sua interface ide, na raiz crie seu ambiente virtual e siga a estrutura abaixo
 
 ## **Estrutura do Projeto**
 ```plaintext
