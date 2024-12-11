@@ -12,7 +12,7 @@ Este repositório contém soluções para testes de avaliação, que envolvem co
 
 ### Tecnologias Utilizadas
 
-- **Python** 3.8 ou superior
+- **Python** 3.9
 - **PySpark** 3.5.0
 - **Pandas** 1.5.3
 - **PyArrow** 12.0.1
@@ -41,6 +41,8 @@ ou
 ```plaintext
 Projeto ABInbev
 ├── .venv
+├── dags/
+│   ├── dag_ingestion.py
 ├── data/
 │   ├── transient/
 │   │   └── Breweries/
@@ -50,6 +52,10 @@ Projeto ABInbev
 │   │   └── Breweries/
 │   │       └── dat_process=YYYY-MM-DD/
 │   │           └── *.parquet
+│   └── gold/
+│   |   └── Breweries/
+│   |       └── dat_process=YYYY-MM-DD/
+│   |            └── *.parquet
 │   ├── log/
 │   |   └── YYYY-MM-DD/
 │   │           └── *.csv
@@ -58,11 +64,6 @@ Projeto ABInbev
 │   │       └── dat_process=YYYY-MM-DD/
 |   │           └── city=string/
 │   │             └── *.parquet
-
-│   └── gold/
-│       └── Breweries/
-│           └── dat_process=YYYY-MM-DD/
-│               └── *.parquet
 ├── jobs/
 │   ├── scripts/
 │   │   └── ingestion.py
@@ -78,8 +79,13 @@ Projeto ABInbev
 └── .dockerignore
 ```
 
-### Arquitetura do Data Lake (Medallion)
+### Criação do ambiente
 
-- **Bronze (Raw Data)**: Dados da API são consumidos e armazenados sem modificações.
-- **Prata (Curated Data)**: Dados transformados e particionados por localização.
+- **1**: Após a criação da estrutura acima, edite os arquivos docker-compose.yml, Dockerfile, airflow.env .dockerignore exatamente como estão os mesmos arquivos nesse repositório. Claro, isso vale para todos os demais arquivos
+- **2**: Docker instalado. Execute o seguinte comando na raiz onde encontrase o arquivo docker-compose.yml
+```
+docker-compose up -d --build
+```
+Este comando criará suma imagem e docker, utilizará o docker-compose.yml como template para baixar suma imagem pyspark e o Dockerfile para instalr todos os recursos necesários.
+
 - **Ouro (Analytical Data)**: Dados agregados (quantidade de cervejarias por tipo e localização).
