@@ -1,0 +1,2 @@
+Directory,File Name,File Path,Start Time,End Time,Record Count
+/opt/airflow/data/transient/Breweries/2024-12-11,20241211_0000.csv,/opt/airflow/data/transient/Breweries/2024-12-11/20241211_0000.csv,2024-12-11 00:00:02,2024-12-11 00:00:20,8355
