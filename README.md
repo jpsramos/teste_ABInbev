@@ -311,21 +311,27 @@ task = PythonOperator(
 
 ```
 
+### Evidências das tratativas realizadas
 
-Transient
+- **Transients**
+
 ![image](https://github.com/user-attachments/assets/0d1ff0ae-e6e5-4133-a1e7-5b17591c3d44)
 
 
-Camada Bronze (tratamento de caracter 
+- **Camada Bronze (tratamento de caracter )**
+
 
 ![image](https://github.com/user-attachments/assets/2b09b3ce-5152-4e45-8078-e85edcbc2645)
 
 
+- **Camada Silver**
 
-Camada Silver
+
 ![image](https://github.com/user-attachments/assets/2a30054d-2ece-48b1-a74d-80b23a5686d9)
 
 
-Camada Gold (estrutura proposta de output)
+- **Camada Gold (estrutura proposta de output)**
+
+
 ![image](https://github.com/user-attachments/assets/7cff4bea-ccf3-4b4b-94ca-16c95d0cc63e)
 
