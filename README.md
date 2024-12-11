@@ -86,6 +86,22 @@ Projeto ABInbev
 ```
 docker-compose up -d --build
 ```
-Este comando criará suma imagem e docker, utilizará o docker-compose.yml como template para baixar suma imagem pyspark e o Dockerfile para instalr todos os recursos necesários.
+Este comando criará suma imagem e docker, utilizará o docker-compose.yml como template para baixar suma imagem pyspark e o Dockerfile para instalr todos os recursos necesários. Os pacotes inserido no Dockerfile garante que não haverá falha na compatibilidade das aplicaçãoes, fique atento em propor a utilização de algum quanto suas dependências.
 
-- **Ouro (Analytical Data)**: Dados agregados (quantidade de cervejarias por tipo e localização).
+- **3**: Após finalização ao executar o comando docker-compose -d , poderá confirmar seus containers ativos, será listado os seguintes:
+```
+spark-master
+spark-worker
+airflow-scheduler
+airflow-webserver
+```
+- **4**: Abra seu docker e deu um start no airflow-webserver, a configuração do docker-compose.yml pemitirá que visualize o airflow ativo via navegador através do seguinte endereço, http://localhost:8080.
+
+- **5**: Não automatizei sua criação, será necessário acessar Admin > Connections e criar conenexão uma para o fluxo funcionar:
+```
+Connection Id *	: spark-conn
+Connection Type *: spark
+Host: spark://spark-master
+Port: 7077
+```
+
