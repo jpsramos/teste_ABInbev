@@ -50,10 +50,15 @@ Projeto ABInbev
 │   │   └── Breweries/
 │   │       └── dat_process=YYYY-MM-DD/
 │   │           └── *.parquet
+│   ├── log/
+│   |   └── YYYY-MM-DD/
+│   │           └── *.csv
 │   ├── silver/
 │   │   └── Breweries/
 │   │       └── dat_process=YYYY-MM-DD/
-│   │           └── *.parquet
+|   │           └── city=string/
+│   │             └── *.parquet
+
 │   └── gold/
 │       └── Breweries/
 │           └── dat_process=YYYY-MM-DD/
@@ -64,8 +69,8 @@ Projeto ABInbev
 ├── utils/
 │   ├── api/
 │   │   └── restfull.py
-├── config/
-│   ├── config.py
+├── tests/
+│   ├── unit_test.py/
 ├── docker-compose.yml
 ├── Dockerfile
 ├── README.md
@@ -73,3 +78,8 @@ Projeto ABInbev
 └── .dockerignore
 ```
 
+### Arquitetura do Data Lake (Medallion)
+
+- **Bronze (Raw Data)**: Dados da API são consumidos e armazenados sem modificações.
+- **Prata (Curated Data)**: Dados transformados e particionados por localização.
+- **Ouro (Analytical Data)**: Dados agregados (quantidade de cervejarias por tipo e localização).
