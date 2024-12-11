@@ -207,6 +207,10 @@ airflow-webserver
 ```
 - **4**: Abra seu docker e deu um start no airflow-webserver, a configuração do docker-compose.yml pemitirá que visualize o airflow ativo via navegador através do seguinte endereço, http://localhost:8080.
 
+![image](https://github.com/user-attachments/assets/7a2bd88f-abd6-4315-8769-24d1da1fb852)
+
+![image](https://github.com/user-attachments/assets/49a265d3-ba07-4efe-b918-5ac864e109e5)
+
 - **5**: Não automatizei sua criação, será necessário acessar Admin > Connections e criar conenexão uma para o fluxo funcionar:
 ```
 Connection Id *	: spark-conn
@@ -214,4 +218,12 @@ Connection Type *: spark
 Host: spark://spark-master
 Port: 7077
 ```
+- **6**: Dag disponível
+![image](https://github.com/user-attachments/assets/cf9cfa33-1052-403b-b483-39b35ee0946e)
+
+- **7**: Processo iniciado
+![image](https://github.com/user-attachments/assets/bb2efec6-6bd7-4919-9671-3a01daad758a)
+
+
+
 
