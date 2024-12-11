@@ -82,7 +82,117 @@ Projeto ABInbev
 ### Criação do ambiente
 
 - **1**: Após a criação da estrutura acima, edite os arquivos docker-compose.yml, Dockerfile, airflow.env .dockerignore exatamente como estão os mesmos arquivos nesse repositório. Claro, isso vale para todos os demais arquivos
-- **2**: Docker instalado. Execute o seguinte comando na raiz onde encontrase o arquivo docker-compose.yml
+
+Dockerfile
+```
+FROM apache/airflow:2.7.1-python3.9
+
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        gcc \
+        python3-dev \
+        procps \
+        openjdk-11-jdk \
+        vim && \
+    apt-get autoremove -yqq --purge && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Set JAVA_HOME environment variable
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+ENV PATH $JAVA_HOME/bin:$PATH
+
+RUN mkdir -p /tmp/spark-temp && chmod -R 777 /tmp/spark-temp
+
+USER airflow
+
+RUN pip install apache-airflow==2.7.2 apache-airflow-providers-apache-spark==4.0.1 pyspark==3.5.0 \
+    openlineage-airflow==1.24.1 streamlit==1.26.0 requests==2.31.0 duckdb==0.9.1 pyarrow==14.0.0
+```
+docker-compose.ymml
+```
+version: '4'
+
+x-spark-common: &spark-common
+  image: bitnami/spark:3.5.0-debian-11-r0
+  volumes:
+    - ./jobs:/opt/bitnami/spark/jobs
+    - ./data:/opt/airflow/data
+  networks:
+    - code-with-yu
+
+x-airflow-common: &airflow-common
+  build:
+    context: .
+    dockerfile: Dockerfile
+  env_file:
+    - airflow.env
+  volumes:
+    - ./jobs:/opt/airflow/jobs
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./data:/opt/airflow/data
+  depends_on:
+    - postgres
+  networks:
+    - code-with-yu
+
+services:
+  spark-master:
+    <<: *spark-common
+    container_name: spark-master
+    command: bin/spark-class org.apache.spark.deploy.master.Master
+    environment:
+      PYSPARK_PYTHON: /usr/bin/python3.9
+      PYSPARK_DRIVER_PYTHON: /usr/bin/python3.9
+    ports:
+      - "9090:8080"
+      - "7077:7077"
+
+  spark-worker:
+    <<: *spark-common
+    container_name: spark-worker
+    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    depends_on:
+      - spark-master
+    environment:
+      SPARK_MODE: worker
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_MASTER_URL: spark://spark-master:7077
+      PYSPARK_PYTHON: /usr/bin/python3.9
+      PYSPARK_DRIVER_PYTHON: /usr/bin/python3.9
+
+  postgres:
+    image: postgres:14.0
+    container_name: airflow-postgres
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    networks:
+      - code-with-yu
+
+  webserver:
+    <<: *airflow-common
+    container_name: airflow-webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    depends_on:
+      - scheduler
+
+  scheduler:
+    <<: *airflow-common
+    container_name: airflow-scheduler
+    command: bash -c "airflow db migrate && airflow users create --username admin --firstname Jonnathans --lastname Silva --role Admin --email airscholar@gmail.com --password admin && airflow scheduler"
+
+networks:
+  code-with-yu:
+```
+
+- **2**: Docker instalado. Execute o seguinte comando na raiz onde encontra-se o arquivo docker-compose.yml
 ```
 docker-compose up -d --build
 ```
