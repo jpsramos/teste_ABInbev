@@ -230,6 +230,10 @@ Port: 7077
 
 ![image](https://github.com/user-attachments/assets/bb2efec6-6bd7-4919-9671-3a01daad758a)
 
+- **8**: Processo finalizado
+![image](https://github.com/user-attachments/assets/2177109b-2979-4df2-b57e-7ad4fd1ec564)
+
+
 
 
 
