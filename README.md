@@ -1,30 +1,41 @@
 # Teste ABInbev - Data Processing Project
 
+[](https://github.com/jpsramos/teste_ABInbev/blob/main/README.md#descri%C3%A7%C3%A3o)
+
+
 ## **Descrição**
-Este projeto realiza o processamento de dados utilizando **PySpark** e **Pandas**. Ele é projetado para gerenciar diretórios, ler arquivos CSV ou Parquet e salvar os resultados processados em diferentes camadas de dados: **bronze**, **silver** e **gold**.
 
-## **Requisitos**
-Certifique-se de que os seguintes requisitos estão instalados antes de executar o projeto:
+
+O projeto utiliza PySpark e Pandas para processar dados, gerenciar catálogos, ler arquivos CSV ou Parquet e salvar os resultados em três camadas de dados: Bronze, Silver e Gold. Inclui um ambiente Docker completo. 
+
+Este repositório contém soluções para testes de avaliação, que envolvem consumir dados da API, transformá-los e armazená-los no data lake, seguindo a arquitetura Medallion (Níveis: Bronze para dados brutos, Silver para dados transformados e particionados e nível Gold para transformar e particionar dados).
+
+### Tecnologias Utilizadas
+
 - **Python** 3.8 ou superior
 - **PySpark** 3.5.0
 - **Pandas** 1.5.3
 - **PyArrow** 12.0.1
+- **API**: [Open Brewery DB](https://www.openbrewerydb.org/)
+- **Orquestração**: [Airflow](https://airflow.apache.org/) (ou qualquer outra ferramenta de sua escolha)
+- **Docker**: Para containerização do projeto
+
+### Arquitetura do Data Lake (Medallion)
+
+- **Bronze (Raw Data)**: Dados da API são consumidos e armazenados sem modificações.
+- **Prata (Curated Data)**: Dados transformados e particionados por localização.
+- **Ouro (Analytical Data)**: Dados agregados (quantidade de cervejarias por tipo e localização).
+
+> Obs.: foi a feita a adição de de um diretorio anteedente Transient, para recepcionar o arquivo deu um forma como json ou csv. Bronze os converte para colunar com todos campos string. A idéia é simular um recepção de formato aleatório via integração qualquer
 
 
-## **Requisitos**
-Certifique-se de que os seguintes requisitos estão instalados antes de executar o projeto:
-- **Python** 3.8 ou superior
-- **PySpark** 3.5.0
-- **Pandas** 1.5.3
-- **PyArrow** 12.0.1
+### Passos para Rodar o Projeto
 
+- Clone o repositorio
 
-## **Requisitos**
-Certifique-se de que os seguintes requisitos estão instalados antes de executar o projeto:
-- **Python** 3.8 ou superior
-- **PySpark** 3.5.0
-- **Pandas** 1.5.3
-- **PyArrow** 12.0.1
+ou
+
+- Crie um do zero na sua interface ide, na raiz crie seu ambiente virtual siga a estrutura abaixo
 
 ## **Estrutura do Projeto**
 ```plaintext
@@ -60,3 +71,5 @@ Projeto ABInbev
 ├── README.md
 ├── airflow.env
 └── .dockerignore
+```
+
