@@ -226,12 +226,11 @@ Port: 7077
 
 ![image](https://github.com/user-attachments/assets/cf9cfa33-1052-403b-b483-39b35ee0946e)
 
-- **7**: Processo iniciado
 
-![image](https://github.com/user-attachments/assets/bb2efec6-6bd7-4919-9671-3a01daad758a)
+- **7**: Processo finalizado
 
-- **8**: Processo finalizado
-![image](https://github.com/user-attachments/assets/2177109b-2979-4df2-b57e-7ad4fd1ec564)
+![image](https://github.com/user-attachments/assets/2ddb0274-c12d-479a-a217-e56140d30f5b)
+
 
 
 ### Monitoramento
