@@ -226,12 +226,11 @@ Port: 7077
 
 ![image](https://github.com/user-attachments/assets/cf9cfa33-1052-403b-b483-39b35ee0946e)
 
-- **7**: Processo iniciado
 
-![image](https://github.com/user-attachments/assets/bb2efec6-6bd7-4919-9671-3a01daad758a)
+- **7**: Processo finalizado
 
-- **8**: Processo finalizado
-![image](https://github.com/user-attachments/assets/2177109b-2979-4df2-b57e-7ad4fd1ec564)
+![image](https://github.com/user-attachments/assets/2ddb0274-c12d-479a-a217-e56140d30f5b)
+
 
 
 ### Monitoramento
@@ -309,4 +308,85 @@ task = PythonOperator(
     execution_timeout=timedelta(minutes=30),  # Timeout para execução
 )
 
+```
+
+### Evidências das tratativas realizadas
+
+- **Transients**
+
+![image](https://github.com/user-attachments/assets/0d1ff0ae-e6e5-4133-a1e7-5b17591c3d44)
+
+
+- **Camada Bronze (tratamento de caracter )**
+
+
+![image](https://github.com/user-attachments/assets/2b09b3ce-5152-4e45-8078-e85edcbc2645)
+
+
+- **Camada Silver**
+
+
+![image](https://github.com/user-attachments/assets/2a30054d-2ece-48b1-a74d-80b23a5686d9)
+
+
+- **Camada Gold (estrutura proposta de output)**
+
+
+![image](https://github.com/user-attachments/assets/7cff4bea-ccf3-4b4b-94ca-16c95d0cc63e)
+
+
+
+### Evidências das tratativas realizadas
+
+- **Listar imagens**
+
+```
+docker images
+```
+
+- **Ver todos containers**
+```
+docker ps -a
+```
+
+- **Acessar container**
+
+```
+docker exec -it <nome container> bash
+```
+
+- **Parar um container**
+
+```
+docker stop <nome_ou_id_do_container>
+```
+
+- **Reiniciar um container**
+
+```
+docker restart <nome_ou_id_do_container>
+```
+
+- **Remover um container**
+
+```
+docker rm <nome_ou_id_do_container>
+```
+
+- **Desligar containers de um projeto**
+
+```
+docker-compose down
+```
+
+- **Fazer o build de uma imagem**
+
+```
+docker-compose up -d --buid
+```
+
+- **Visualizar status dos containers**
+
+```
+docker-compose up -d
 ```
